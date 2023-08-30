@@ -19,10 +19,16 @@ function generateGameId(name) {
         .toLowerCase();
     return cleanedName;
 }
-function getGames() {
+function getGames(searchTerm, limit) {
     return __awaiter(this, void 0, void 0, function* () {
         const gamesSnapshot = yield gameRef.get();
-        const games = gamesSnapshot.docs.map((doc) => (Object.assign({ id: doc.id }, doc.data())));
+        let games = gamesSnapshot.docs.map((doc) => (Object.assign({ id: doc.id }, doc.data())));
+        if (searchTerm) {
+            games = games.filter((game) => game.name.toLowerCase().includes(searchTerm.toLowerCase()));
+        }
+        if (limit) {
+            games = games.slice(0, limit);
+        }
         return games;
     });
 }

@@ -2,9 +2,13 @@ import { Request, Response } from "express";
 import * as gameService from "../services/game.service";
 import { Game } from "../models/game.interface";
 
-export async function getGames(_: Request, res: Response) {
+export async function getGames(req: Request, res: Response) {
   try {
-    const games: Game[] = await gameService.getGames();
+    const { q, limit } = req.query;
+    const games: Game[] = await gameService.getGames(
+      q as string,
+      parseInt(limit as string)
+    );
     if (!games.length) {
       return res.status(404).json({ ok: false, message: "Games not found" });
     }

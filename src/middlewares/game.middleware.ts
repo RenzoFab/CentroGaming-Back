@@ -13,6 +13,8 @@ const fields: { field: keyof Game; type: "string" | "number" }[] = [
   { field: "developer", type: "string" },
   { field: "stock", type: "number" },
   { field: "platforms", type: "string" },
+  { field: "img", type: "string" },
+  { field: "logo", type: "string" },
 ];
 
 function validateFieldGame(field: keyof Game, type: "string" | "number") {

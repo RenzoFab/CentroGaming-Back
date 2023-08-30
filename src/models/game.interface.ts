@@ -11,4 +11,6 @@ export interface Game {
   developer: string;
   stock: number;
   platforms: string;
+  img: string;
+  logo: string;
 }

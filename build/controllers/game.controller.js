@@ -34,10 +34,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.postGame = exports.getGame = exports.getGames = void 0;
 const gameService = __importStar(require("../services/game.service"));
-function getGames(_, res) {
+function getGames(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const games = yield gameService.getGames();
+            const { q, limit } = req.query;
+            const games = yield gameService.getGames(q, parseInt(limit));
             if (!games.length) {
                 return res.status(404).json({ ok: false, message: "Games not found" });
             }

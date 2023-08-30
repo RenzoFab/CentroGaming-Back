@@ -14,6 +14,8 @@ const fields = [
     { field: "developer", type: "string" },
     { field: "stock", type: "number" },
     { field: "platforms", type: "string" },
+    { field: "img", type: "string" },
+    { field: "logo", type: "string" },
 ];
 function validateFieldGame(field, type) {
     return type === "string"
